@@ -2,15 +2,28 @@
 
 import { useState, useEffect } from 'react';
 import EditorBibliografia from '@/components/EditorBibliografia';
-import { Download, Save, FileText, ArrowLeft } from 'lucide-react';
+import { Download, Save, FileText, ArrowLeft, FolderOpen, Loader2 } from 'lucide-react';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
+
+const paginesDisponibles = [
+  { id: 'introduccio', nom: 'Introducció', ruta: '/introduccio' },
+  { id: 'estat-art', nom: 'Estat de l\'Art', ruta: '/estat-art' },
+  { id: 'marc-regulatori', nom: 'Marc Regulatori', ruta: '/marc-regulatori' },
+  { id: 'ia-accessibilitat', nom: 'IA i Accessibilitat', ruta: '/ia-accessibilitat' },
+  { id: 'casos-estudi', nom: 'Casos d\'Estudi', ruta: '/casos-estudi' },
+  { id: 'beneficis-desafiaments', nom: 'Beneficis i Desafiaments', ruta: '/beneficis-desafiaments' },
+  { id: 'conclusions', nom: 'Conclusions', ruta: '/conclusions' },
+];
 
 export default function EditorPage() {
   const tNav = useTranslations('nav');
   const [contingut, setContingut] = useState('');
   const [guardat, setGuardat] = useState(false);
   const [mostrarConfirmacio, setMostrarConfirmacio] = useState(false);
+  const [paginaSeleccionada, setPaginaSeleccionada] = useState<string>('');
+  const [carregant, setCarregant] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   // Carregar contingut guardat al carregar la pàgina
   useEffect(() => {
@@ -70,12 +83,121 @@ export default function EditorPage() {
   const netejarText = () => {
     if (window.confirm('Estàs segur que vols esborrar tot el contingut? Aquesta acció no es pot desfer.')) {
       setContingut('');
+      setPaginaSeleccionada('');
       if (typeof window !== 'undefined') {
         localStorage.removeItem('editor-contingut');
+        localStorage.removeItem('editor-pagina');
       }
       setGuardat(false);
     }
   };
+
+  const carregarPagina = async (paginaId: string) => {
+    setCarregant(true);
+    setError(null);
+    
+    try {
+      const response = await fetch(`/api/contingut?pagina=${paginaId}`);
+      
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Error carregant la pàgina');
+      }
+      
+      const data = await response.json();
+      
+      console.log('Dades rebudes de l\'API:', { 
+        pagina: data.pagina, 
+        tipus: data.tipus,
+        longitud: data.contingut?.length || 0,
+        mostra: data.contingut?.substring(0, 100) || 'buit'
+      });
+      
+      // Carregar el contingut (markdown o text extret)
+      const contingutACarregar = data.contingut || '';
+      
+      if (!contingutACarregar || contingutACarregar.trim().length === 0) {
+        setError('El contingut està buit. Potser la pàgina no té contingut o hi ha hagut un error en extreure\'l.');
+      } else {
+        setError(null);
+      }
+      
+      setContingut(contingutACarregar);
+      setPaginaSeleccionada(paginaId);
+      
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('editor-contingut', contingutACarregar);
+        localStorage.setItem('editor-pagina', paginaId);
+      }
+      
+      // Si s'ha creat un nou fitxer markdown, mostrar un missatge informatiu
+      if (data.creat) {
+        // El missatge es mostrarà a través de la confirmació
+      }
+      
+      setGuardat(false); // No marcar com guardat quan es carrega
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Error desconegut');
+      console.error('Error carregant pàgina:', err);
+    } finally {
+      setCarregant(false);
+    }
+  };
+
+  const guardarPagina = async () => {
+    if (!paginaSeleccionada) {
+      // Si no hi ha pàgina seleccionada, guardar només a localStorage
+      guardarText();
+      return;
+    }
+
+    setCarregant(true);
+    setError(null);
+
+    try {
+      const response = await fetch('/api/contingut', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          pagina: paginaSeleccionada,
+          contingut: contingut,
+        }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Error guardant la pàgina');
+      }
+
+      const data = await response.json();
+      setGuardat(true);
+      setMostrarConfirmacio(true);
+      setTimeout(() => {
+        setGuardat(false);
+        setMostrarConfirmacio(false);
+      }, 3000);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Error desconegut');
+      console.error('Error guardant pàgina:', err);
+    } finally {
+      setCarregant(false);
+    }
+  };
+
+  // Carregar pàgina guardada al carregar el component
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const paginaGuardada = localStorage.getItem('editor-pagina');
+      const contingutGuardat = localStorage.getItem('editor-contingut');
+      
+      if (paginaGuardada && contingutGuardat) {
+        setPaginaSeleccionada(paginaGuardada);
+        setContingut(contingutGuardat);
+      }
+    }
+  }, []);
 
   return (
     <div className="bg-white min-h-screen">
@@ -99,19 +221,72 @@ export default function EditorPage() {
           </p>
         </div>
 
+        {/* Selector de pàgina */}
+        <div className="mb-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+          <label className="block text-sm font-medium text-gray-700 mb-2">
+            Editar contingut de pàgina:
+          </label>
+          <div className="flex flex-wrap items-center gap-3">
+            <select
+              value={paginaSeleccionada}
+              onChange={(e) => {
+                if (e.target.value) {
+                  carregarPagina(e.target.value);
+                } else {
+                  setPaginaSeleccionada('');
+                  setContingut('');
+                }
+              }}
+              className="flex-1 min-w-[200px] px-3 py-2 border border-gray-300 rounded-md text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              disabled={carregant}
+            >
+              <option value="">-- Selecciona una pàgina --</option>
+              {paginesDisponibles.map((pagina) => (
+                <option key={pagina.id} value={pagina.id}>
+                  {pagina.nom}
+                </option>
+              ))}
+            </select>
+            {paginaSeleccionada && (
+              <Link
+                href={paginesDisponibles.find(p => p.id === paginaSeleccionada)?.ruta || '#'}
+                target="_blank"
+                className="inline-flex items-center gap-2 px-3 py-2 text-sm font-medium text-blue-600 hover:text-blue-800 hover:bg-blue-100 rounded-md transition-colors"
+              >
+                <FolderOpen className="h-4 w-4" />
+                Veure pàgina
+              </Link>
+            )}
+            {carregant && (
+              <Loader2 className="h-5 w-5 text-blue-600 animate-spin" />
+            )}
+          </div>
+          {error && (
+            <div className="mt-3 p-2 bg-red-50 border border-red-200 rounded text-sm text-red-600">
+              {error}
+            </div>
+          )}
+          {paginaSeleccionada && contingut && (
+            <div className="mt-3 p-2 bg-green-50 border border-green-200 rounded text-sm text-green-700">
+              ✓ Contingut carregat. Pots editar el text i guardar els canvis.
+            </div>
+          )}
+        </div>
+
         {/* Barra d'eines */}
         <div className="mb-6 flex flex-wrap items-center justify-between gap-3 p-4 bg-gray-50 border border-gray-200 rounded-lg">
           <div className="flex items-center gap-3">
             <button
-              onClick={guardarText}
-              className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700 bg-white hover:bg-gray-100 border border-gray-300 rounded-md transition-colors"
+              onClick={paginaSeleccionada ? guardarPagina : guardarText}
+              disabled={carregant || !contingut}
+              className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700 bg-white hover:bg-gray-100 border border-gray-300 rounded-md transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <Save className="h-4 w-4" />
-              {guardat ? 'Guardat!' : 'Guardar'}
+              {carregant ? 'Guardant...' : guardat ? 'Guardat!' : paginaSeleccionada ? 'Guardar pàgina' : 'Guardar'}
             </button>
             {mostrarConfirmacio && (
               <span className="text-xs text-green-600">
-                ✓ Guardat a localStorage
+                ✓ {paginaSeleccionada ? 'Pàgina guardada!' : 'Guardat a localStorage'}
               </span>
             )}
           </div>

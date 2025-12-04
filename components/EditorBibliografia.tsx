@@ -87,6 +87,13 @@ export default function EditorBibliografia({
     return referenciesRellevants;
   }, []);
 
+  // Actualitzar el contingut quan canvia initialContent
+  useEffect(() => {
+    if (initialContent !== contingut) {
+      setContingut(initialContent);
+    }
+  }, [initialContent]);
+
   // Actualitzar suggeriments quan canvia el contingut
   useEffect(() => {
     if (contingut.length > 50) { // Només buscar si hi ha prou text
