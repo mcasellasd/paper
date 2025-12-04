@@ -21,6 +21,7 @@ const navigation = [
   { key: 'casosEstudi', href: '/casos-estudi' },
   { key: 'beneficisDesafiaments', href: '/beneficis-desafiaments' },
   { key: 'conclusions', href: '/conclusions' },
+  { key: 'editor', href: '/editor' },
   { key: 'bibliografia', href: '/bibliografia' },
 ];
 

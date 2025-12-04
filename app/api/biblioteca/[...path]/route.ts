@@ -32,8 +32,11 @@ export async function GET(
       contentType = 'text/markdown';
     }
     
+    // Convertir Buffer a Uint8Array per compatibilitat amb NextResponse
+    const uint8Array = new Uint8Array(fileBuffer);
+    
     // Retornar el fitxer amb els headers correctes
-    return new NextResponse(fileBuffer, {
+    return new NextResponse(uint8Array, {
       headers: {
         'Content-Type': contentType,
         'Content-Disposition': `inline; filename="${path[path.length - 1]}"`,
