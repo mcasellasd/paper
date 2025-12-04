@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "generate:knowledge": "ts-node scripts/generate-knowledge-base.ts"
   },
   "dependencies": {
     "lucide-react": "^0.555.0",

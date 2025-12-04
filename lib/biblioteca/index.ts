@@ -168,18 +168,18 @@ export const documentsBiblioteca: DocumentBiblioteca[] = [
   {
     id: 'mel-legal-spanish-model',
     titol: 'MEL: Legal Spanish Language Model',
-    descripcio: 'Article sobre MEL, un model de llenguatge especialitzat en dret espanyol. Descrit el desenvolupament, entrenament i avaluació d\'aquest model legal especialitzat, proporcionant insights sobre com crear models d\'IA adaptats a dominis legals específics.',
+    descripcio: 'Article sobre MEL, un model de llenguatge especialitzat en dret espanyol. Descrit el desenvolupament, entrenament i avaluació d\'aquest model legal especialitzat, proporcionant insights sobre com crear models d\'IA adaptats a dominis legals específics. MEL exemplifica l\'aproximació de desenvolupar models d\'IA especialitzats per al dret, complementant les idees de López de Mántaras sobre IA especialitzada.',
     data: '2024',
-    tema: ['IA', 'Models de llenguatge', 'Dret espanyol', 'IA especialitzada', 'LegalTech'],
+    tema: ['IA especialitzada', 'Models de llenguatge', 'Dret espanyol', 'LegalTech', 'NLP legal', 'IA aplicada'],
     font: 'Article acadèmic',
     fitxer: 'MEL- LEGAL SPANISH LANGUAGE MODEL.pdf'
   },
   {
     id: 'mel-paper',
     titol: 'MEL Paper',
-    descripcio: 'Article relacionat amb el model MEL (Legal Spanish Language Model) que explora aspectes addicionals del desenvolupament i aplicació de models de llenguatge especialitzats en dret.',
+    descripcio: 'Article relacionat amb el model MEL (Legal Spanish Language Model) que explora aspectes addicionals del desenvolupament i aplicació de models de llenguatge especialitzats en dret. Aquest treball complementa la documentació principal de MEL i proporciona detalls addicionals sobre la implementació, avaluació i casos d\'ús del model en contextos legals reals.',
     data: '2024',
-    tema: ['IA', 'Models de llenguatge', 'Dret espanyol', 'IA especialitzada'],
+    tema: ['IA especialitzada', 'Models de llenguatge', 'Dret espanyol', 'LegalTech', 'NLP legal'],
     font: 'Article acadèmic',
     fitxer: 'mel paper.pdf'
   },
@@ -305,16 +305,16 @@ export const documentsBiblioteca: DocumentBiblioteca[] = [
     titol: 'Nou Marc de Mercats Financers - Llei 6/2023',
     descripcio: 'Llei andorrana que estableix el nou marc regulatori per als mercats financers. Rellevant per al context legal andorrà i per entendre l\'evolució de la regulació financera al Principat.',
     data: '2023',
-    tema: ['Dret andorrà', 'Mercats financers', 'Regulació financera', 'Llei'],
+    tema: ['Andorra', 'Dret andorrà', 'Mercats financers', 'Regulació financera', 'Llei'],
     font: 'Butlletí Oficial del Principat d\'Andorra',
     fitxer: 'Nou_Marc_de_Mercats_Financers_Llei_6_2023.pdf'
   },
   {
     id: 'compravenda-habitatge-horitzontal',
     titol: 'Compravenda d\'habitatge en règim de propietat horitzontal',
-    descripcio: 'Document sobre la compravenda d\'habitatge en règim de propietat horitzontal, possiblement un cas pràctic o guia sobre aquesta figura del dret immobiliari.',
+    descripcio: 'Document sobre la compravenda d\'habitatge en règim de propietat horitzontal, possiblement un cas pràctic o guia sobre aquesta figura del dret immobiliari andorrà.',
     data: '2024',
-    tema: ['Dret immobiliari', 'Propietat horitzontal', 'Compravenda', 'Dret civil'],
+    tema: ['Andorra', 'Dret andorrà', 'Dret immobiliari', 'Propietat horitzontal', 'Compravenda', 'Dret civil'],
     font: 'Document legal',
     fitxer: '1055_compravenda-habitatge-regim-prop-horitzontal.docx'
   },
@@ -375,10 +375,10 @@ export const documentsBiblioteca: DocumentBiblioteca[] = [
   {
     id: 'af-csj-manual',
     titol: 'Manual del Consell Superior de Justícia',
-    descripcio: 'Manual o document del Consell Superior de Justícia sobre procediments, normativa o guies relacionades amb l\'administració de justícia.',
+    descripcio: 'Manual o document del Consell Superior de Justícia d\'Andorra sobre procediments, normativa o guies relacionades amb l\'administració de justícia.',
     data: '2024',
-    tema: ['Administració de justícia', 'Manual', 'Procediments'],
-    font: 'Consell Superior de Justícia',
+    tema: ['Andorra', 'Dret andorrà', 'Administració de justícia', 'Manual', 'Procediments'],
+    font: 'Consell Superior de Justícia d\'Andorra',
     fitxer: 'af_csj-manual_d.pdf'
   },
   {
