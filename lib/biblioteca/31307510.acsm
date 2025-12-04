@@ -1,0 +1,39 @@
+<fulfillmentToken fulfillmentType="loan" auth="user" xmlns="http://ns.adobe.com/adept">
+  <distributor>urn:uuid:9cb786e8-586a-4950-8901-fff8d2ee6025</distributor>
+  <operatorURL>https://acs.ebookcentral.proquest.com/fulfillment</operatorURL>
+  <transaction>31307510_536740652</transaction>
+  <purchase>2025-12-13T10:07:03+00:00</purchase>
+  <expiration>2025-12-13T16:07:03+00:00</expiration>
+  <resourceItemInfo>
+    <resource>urn:uuid:e0000000-0000-0000-0000-000031307510</resource>
+    <resourceItem>0</resourceItem>
+    <metadata>
+      <dc:title xmlns:dc="http://purl.org/dc/elements/1.1/">100 Coses Que Cal Saber Sobre Intel·ligència Artificial</dc:title>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">de i Badia, Ramon López Mántaras;</dc:creator>
+      <dc:publisher xmlns:dc="http://purl.org/dc/elements/1.1/">Cossetània Edicions</dc:publisher>
+      <dc:identifier xmlns:dc="http://purl.org/dc/elements/1.1/">31307510</dc:identifier>
+      <dc:format xmlns:dc="http://purl.org/dc/elements/1.1/">application/epub+zip</dc:format>
+      <dc:language xmlns:dc="http://purl.org/dc/elements/1.1/">ca</dc:language>
+    </metadata>
+    <licenseToken>
+      <resource>urn:uuid:e0000000-0000-0000-0000-000031307510</resource>
+      <permissions>
+        <display>
+          <duration>25919999</duration>
+        </display>
+        <excerpt>
+          <duration>25919999</duration>
+          <count initial="59" max="59" incrementInterval="439322"/>
+        </excerpt>
+        <print>
+          <duration>25919999</duration>
+          <count initial="117" max="117" incrementInterval="221538"/>
+        </print>
+        <play>
+          <duration>25919999</duration>
+        </play>
+      </permissions>
+    </licenseToken>
+  </resourceItemInfo>
+  <hmac>8EDCKaNh0f3EDqhpUbe84jK2vP4=</hmac>
+</fulfillmentToken>

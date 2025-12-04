@@ -1,0 +1,167 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "introduccio": "Introduction",
+    "marcTeoric": "Cadre Théorique",
+    "iaAccessibilitat": "IA et Accessibilité",
+    "casosEstudi": "Cas d'Étude",
+    "beneficisDesafiaments": "Bénéfices et Défis",
+    "conclusions": "Conclusions",
+    "bibliografia": "Bibliographie"
+  },
+  "hero": {
+    "title": "Nouvelles technologies appliquées à l'accessibilité juridique: Intelligence artificielle et interprétation citoyenne du droit. Le projet Prudencia.ad",
+    "subtitle": "Un système d'intelligence artificielle pour l'accessibilité juridique en Principauté d'Andorre",
+    "description": "Paper sur les nouvelles technologies et l'entrepreneuriat en LegalTech qui combine innovation technologique et droit pour démocratiser l'accès à la connaissance juridique andorrane"
+  },
+  "intro": {
+    "title": "1. Introduction",
+    "context": {
+      "title": "1.1. Contexte",
+      "content": "La complexité du langage juridique représente une barrière d'entrée significative pour les citoyens et expatriés en Andorre. Ce projet aborde le manque d'outils modernes, centralisés et explicatifs du droit andorran par rapport aux systèmes voisins."
+    },
+    "problema": {
+      "title": "1.2. Problème",
+      "content": "Manque d'outils modernes, centralisés et explicatifs du droit andorran par rapport aux systèmes voisins."
+    },
+    "antecedents": {
+      "title": "1.3. Antécédents",
+      "content": "Le projet catalunyalegal.vercel.app sert de preuve de concept (PoC) préalable, démontrant la viabilité technique de l'approche."
+    },
+    "objectius": {
+      "title": "1.4. Objectifs",
+      "principal": "Créer un portail accessible assisté par IA",
+      "secundaris": [
+        "Multilinguisme (catalan, espagnol, français)",
+        "Comparaison de systèmes légaux",
+        "Validation empirique de l'utilisation des LLMs en droit micro-étatique"
+      ]
+    }
+  },
+  "estatArt": {
+    "title": "2. État de l'Art (Cadre Théorique)",
+    "legaltech": {
+      "title": "2.1. LegalTech et IA Générative",
+      "content": "Comment les LLM (Large Language Models) comme Claude/GPT transforment le secteur juridique."
+    },
+    "marc": {
+      "title": "2.2. Le cadre juridique andorran",
+      "content": "Particularités, officialité du catalan vs. réalité trilingue, accès au BOPA."
+    },
+    "tecnologies": {
+      "title": "2.3. Technologies Web Modernes",
+      "content": "Justification de l'utilisation de JAMstack (Next.js + Vercel) pour des projets à haute performance et faible coût."
+    }
+  },
+  "arquitectura": {
+    "title": "4. Architecture Technique",
+    "stack": {
+      "title": "4.1. Stack Technologique",
+      "content": "Next.js, React, Tailwind, Vercel. Justification du choix de cette combinaison."
+    },
+    "dades": {
+      "title": "4.2. Modèle de Données",
+      "content": "Structure JSON vs Base de Données Relationnelle. Schéma JSON de l'article."
+    },
+    "ia": {
+      "title": "4.3. Intégration de l'IA",
+      "content": "Architecture de prompts (Prompt Engineering), gestion des coûts et tokens (API Claude)."
+    },
+    "multilingue": {
+      "title": "4.4. Stratégie Multilingue (i18n)",
+      "content": "Défis techniques de gestion du contenu juridique en CA/ES/FR."
+    }
+  },
+  "implementacio": {
+    "title": "5. Implémentation et Développement (MVP)",
+    "ingestio": {
+      "title": "5.1. Processus d'Ingestion de Données",
+      "content": "Comment transformer les PDF du BOPA en JSON structuré."
+    },
+    "frontend": {
+      "title": "5.2. Développement du Frontend",
+      "content": "Composants clés: ArticleViewer, ChatbotPrudencia."
+    },
+    "al·lucinacio": {
+      "title": "5.3. Le défi de l' 'Hallucination' en Droit",
+      "content": "Mesures prises pour éviter que l'IA invente des lois (références croisées, Retrieval Augmented Generation - RAG)."
+    }
+  },
+  "sostenibilitat": {
+    "title": "6. Modèle de Durabilité et Business",
+    "costos": {
+      "title": "6.1. Plan de coûts",
+      "content": "Hébergement, APIs."
+    },
+    "monetitzacio": {
+      "title": "6.2. Stratégie de monétisation",
+      "content": "Freemium vs Professional."
+    },
+    "escalabilitat": {
+      "title": "6.3. Évolutivité",
+      "content": "Feuille de route de la Phase 1 à la 3."
+    }
+  },
+  "resultats": {
+    "title": "7. Résultats et Validation",
+    "rendiment": {
+      "title": "7.1. Métriques de Performance",
+      "content": "Résultats de Lighthouse/Vercel Analytics."
+    },
+    "qualitat": {
+      "title": "7.2. Qualité de l'IA",
+      "content": "Évaluation qualitative (par des avocats) des résumés générés."
+    },
+    "comparativa": {
+      "title": "7.3. Comparaison",
+      "content": "prudencia.ad vs Recherche traditionnelle dans le BOPA."
+    }
+  },
+  "conclusions": {
+    "title": "8. Conclusions et Travail Futur",
+    "resum": "Résumé de l'atteinte des objectifs.",
+    "limitacions": "Limitations actuelles (seulement Code Civil initialement).",
+    "futur": "Lignes futures: Jurisprudence liée, API publique."
+  },
+  "bibliografia": {
+    "title": "Bibliographie",
+    "subtitle": "Gestion et consultation des références bibliographiques du paper",
+    "cerca": "Rechercher par titre, auteur, thème...",
+    "filtres": {
+      "tipus": "Type",
+      "any": "Année",
+      "tema": "Thème",
+      "totsTipus": "Tous les types",
+      "totsAnys": "Toutes les années",
+      "totsTemes": "Tous les thèmes",
+      "netejar": "Effacer les filtres"
+    },
+    "mostrant": "Affichage de {count} sur {total} références",
+    "noResultats": "Aucune référence trouvée avec les filtres sélectionnés.",
+    "tornarLlista": "Retour à la liste",
+    "detall": {
+      "autors": "Auteurs",
+      "any": "Année",
+      "editorial": "Éditeur",
+      "revista": "Revue",
+      "citacioCompleta": "Citation complète",
+      "copiar": "Copier",
+      "copiat": "Copié !",
+      "notes": "Notes",
+      "resum": "Résumé",
+      "enllaçExtern": "Lien externe",
+      "descarregarPDF": "Télécharger PDF",
+      "document": "Document"
+    },
+    "tipus": {
+      "llibre": "Livre",
+      "article": "Article",
+      "web": "Ressource web",
+      "paper": "Paper",
+      "informe": "Rapport",
+      "llei": "Loi",
+      "altres": "Autres"
+    }
+  }
+}
+

@@ -1,0 +1,409 @@
+{
+  "nav": {
+    "home": "Inici",
+    "introduccio": "Introducció",
+    "marcTeoric": "Marc Teòric",
+    "marcRegulatori": "Marc Regulatori",
+    "iaAccessibilitat": "IA i Accessibilitat",
+    "casosEstudi": "Casos d'Estudi",
+    "beneficisDesafiaments": "Beneficis i Desafiaments",
+    "conclusions": "Conclusions",
+    "biblioteca": "Biblioteca",
+    "bibliografia": "Bibliografia"
+  },
+  "hero": {
+    "title": "Noves tecnologies aplicades a l'accessibilitat jurídica: Intel·ligència artificial i interpretació ciutadana del dret. El projecte Prudencia.ad",
+    "subtitle": "Un sistema d'intel·ligència artificial per a l'accessibilitat jurídica al Principat d'Andorra",
+    "description": "Paper sobre noves tecnologies i emprendiment en LegalTech que combina innovació tecnològica i dret per democratitzar l'accés al coneixement jurídic andorrà"
+  },
+  "intro": {
+    "title": "1. Introducció",
+    "context": {
+      "title": "1.1. Context",
+      "content": "La complexitat del llenguatge jurídic representa una barrera d'entrada significativa per a ciutadans i expatriats a Andorra. Aquest projecte aborda la manca d'eines modernes, centralitzades i explicatives del dret andorrà en comparació amb sistemes veïns."
+    },
+    "problema": {
+      "title": "1.2. Problema",
+      "content": "Manca d'eines modernes, centralitzades i explicatives del dret andorrà en comparació amb sistemes veïns."
+    },
+    "antecedents": {
+      "title": "1.3. Antecedents",
+      "content": "El projecte catalunyalegal.vercel.app serveix com a prova de concepte (PoC) prèvia, demostrant la viabilitat tècnica de l'aproximació."
+    },
+    "objectius": {
+      "title": "1.4. Objectius",
+      "principal": "Crear un portal accessible assistit per IA que democratitzi l'accés al coneixement jurídic andorrà",
+      "secundaris": [
+        "Multilingüisme complet (català, castellà, francès) per reflectir la realitat trilingüe d'Andorra i facilitar l'accés a expatriats",
+        "Comparativa de sistemes legals amb sistemes veïns (Catalunya, Espanya), especialment valuosa per a expatriats i professionals",
+        "Validació empírica de l'eficàcia i fiabilitat de l'ús de LLMs en dret micro-estatal, contribuint al coneixement científic del LegalTech",
+        "Aplicació de principis de Llenguatge Clar i Disseny Jurídic per reduir les barreres de comprensió del llenguatge jurídic",
+        "Facilitar l'autotutela jurídica i l'autonomia ciutadana en la comprensió de les lleis",
+        "Proporcionar eines verificables i traçables per combatre la desinformació legal, oferint accés a fonts oficials i interpretacions fiables del dret andorrà",
+        "Garantir l'accés gratuït al coneixement jurídic com a principi constitucional fonamental, assegurant que tots els ciutadans puguin accedir a la informació legal sense barreres econòmiques"
+      ]
+    }
+  },
+  "estatArt": {
+    "title": "2. Estat de l'Art (Marc Teòric)",
+    "legaltech": {
+      "title": "2.1. LegalTech i IA Generativa",
+      "content": "Com els LLM (Large Language Models) com Claude/GPT estan transformant el sector legal."
+    },
+    "marc": {
+      "title": "2.2. El marc jurídic andorrà",
+      "content": "Particularitats, oficialitat del català vs. realitat trilingüe, accés al BOPA."
+    },
+    "tecnologies": {
+      "title": "2.3. Tecnologies Web Modernes",
+      "content": "Justificació de l'ús de JAMstack (Next.js + Vercel) per a projectes d'alt rendiment i baix cost."
+    },
+    "marcRegulatori": {
+      "title": "2.4. Marc Regulatori Europeu d'Intel·ligència Artificial",
+      "euAIAct": {
+        "title": "2.4.1. El Reglament Europeu d'IA (EU AI Act)",
+        "content": "El primer marc regulatori integral de la UE sobre intel·ligència artificial, aprovat el 2024, estableix un marc legal per al desenvolupament i ús de sistemes d'IA a la Unió Europea."
+      },
+      "classificacio": {
+        "title": "2.4.2. Classificació de sistemes d'IA i obligacions",
+        "content": "El Reglament classifica els sistemes d'IA segons el nivell de risc: risc mínim, risc limitat, alt risc i risc inacceptable. Els sistemes d'IA destinats a l'Administració de Justícia es classifiquen com d'alt risc."
+      },
+      "aplicacio": {
+        "title": "2.4.3. Aplicació del Reglament a sistemes d'accessibilitat jurídica",
+        "content": "Els sistemes d'IA per a l'accessibilitat jurídica ciutadana poden classificar-se com a risc limitat o alt risc segons les funcionalitats que ofereixin i el seu impacte potencial en els drets fonamentals."
+      },
+      "supervisio": {
+        "title": "2.4.4. Sistemes d'IA d'alt risc i supervisió humana",
+        "content": "Els sistemes d'alt risc requereixen supervisió humana obligatòria ('human-in-the-loop'), explicabilitat, transparència i avaluació de conformitat abans de la posada en marxa."
+      }
+    },
+    "gdpr": {
+      "title": "2.5. Protecció de Dades i GDPR en Sistemes d'IA Jurídica",
+      "especificitats": {
+        "title": "2.5.1. Especificitats del tractament de dades per sistemes d'IA",
+        "content": "El tractament de dades per sistemes d'IA jurídica ha de complir amb els principis del GDPR: minimització, finalitat, limitació del període de conservació i integritat i confidencialitat."
+      },
+      "minimitzacio": {
+        "title": "2.5.2. Principis de minimització i finalitat en el context legal",
+        "content": "Els sistemes d'IA jurídica han de processar només les dades estrictament necessàries per a la finalitat de proporcionar interpretacions legals, sense recopilar informació personal addicional."
+      },
+      "transparencia": {
+        "title": "2.5.3. Drets dels usuaris i transparència algorítmica",
+        "content": "Els usuaris tenen dret a conèixer la lògica involucrada en el processament automatitzat i a obtenir explicacions sobre les interpretacions generades per la IA."
+      }
+    },
+    "responsabilitat": {
+      "title": "2.6. Responsabilitat Legal de Sistemes d'IA",
+      "teories": {
+        "title": "2.6.1. Teories de responsabilitat en sistemes d'IA",
+        "content": "La responsabilitat legal en sistemes d'IA pot derivar-se de la responsabilitat del producte, la responsabilitat per culpa, o la responsabilitat objectiva segons el marc legal aplicable."
+      },
+      "desenvolupadors": {
+        "title": "2.6.2. Responsabilitat de desenvolupadors vs. usuaris",
+        "content": "Els desenvolupadors de sistemes d'IA tenen obligacions de diligència deguda en el disseny i desenvolupament, mentre que els usuaris tenen responsabilitat en l'ús adequat i la supervisió humana."
+      },
+      "jurisprudencia": {
+        "title": "2.6.3. Casos rellevants i jurisprudència europea",
+        "content": "La jurisprudència europea sobre responsabilitat de sistemes d'IA està en desenvolupament, amb casos rellevants sobre biaixos algorítmics, discriminació i errors en sistemes automatitzats."
+      }
+    },
+    "etica": {
+      "title": "2.7. Principis Ètics i Governança de la IA Legal",
+      "principis": {
+        "title": "2.7.1. Justícia, transparència i no maleficència",
+        "content": "Els sistemes d'IA jurídica han de ser dissenyats sota principis de justícia (equitat en l'accés), transparència (explicabilitat de les decisions) i no maleficència (evitar dany als usuaris)."
+      },
+      "biaixos": {
+        "title": "2.7.2. Biaixos i discriminació en algorismes jurídics",
+        "content": "Els sistemes d'IA poden perpetuar o amplificar biaixos existents en les dades d'entrenament, especialment en contextos jurídics on la discriminació històrica pot estar present en les dades."
+      },
+      "sostenibilitat": {
+        "title": "2.7.3. Desenvolupament sostenible i ètic de la IA",
+        "content": "El desenvolupament de sistemes d'IA jurídica ha de considerar l'impacte social, ambiental i ètic a llarg termini, promovent la sostenibilitat i l'equitat."
+      },
+      "governanca": {
+        "title": "2.7.4. Governança efectiva i supervisió interna",
+        "content": "La governança efectiva de sistemes d'IA jurídica requereix mecanismes de supervisió interna, auditoria regular, i processos de revisió ètica per garantir el compliment dels principis ètics."
+      }
+    },
+    "interpretacioJuridica": {
+      "title": "2.8. La Naturalesa de la Interpretació Jurídica i les Limitacions de la IA",
+      "promesa": {
+        "title": "2.8.1. La Promesa de la IA en un Món Jurídic Complex",
+        "content": "La complexitat inherent als codis legals constitueix una barrera persistent per a l'accés efectiu a la justícia. La IA generativa representa una oportunitat transformadora per traduir el llenguatge hermètic del dret a un format comprensible, però aquesta promesa no està exempta de perills."
+      },
+      "naturalesa": {
+        "title": "2.8.2. El Repte Fonamental: La Naturalesa de la Interpretació Jurídica",
+        "distincio": {
+          "title": "2.8.2.1. La Distinció Essencial entre Text i Norma",
+          "content": "Un error comú és confondre el text legal amb la norma jurídica. La norma no és el text en si mateix, sinó el significat que se n'extreu a través d'un procés interpretatiu. L'interpretació no és una activitat merament declarativa, sinó constitutiva: l'intèrpret construeix la norma a partir del text, els fets del cas concret i el context sistèmic."
+        },
+        "atributs": {
+          "title": "2.8.2.2. Els Atributs d'un Estat de Dret Funcional",
+          "content": "Perquè un sistema jurídic sigui eficaç, ha de posseir certs atributs: estabilitat, publicitat, claredat i universalitat. Aquests atributs no són autònoms; la seva eficàcia depèn d'una comprensió humana compartida, d'una 'lògica comuna' que es fonamenta en el sentit comú."
+        },
+        "context": {
+          "title": "2.8.2.3. El Paper Crucial del Context i el Sentit Comú",
+          "content": "Potser la lliçó més important apresa en la història de la IA és que les tasques que semblaven més fàcils, com entendre una conversa, han resultat ser les més complexes. El dret opera en 'entorns no restringits', on el context, les intencions no declarades i les normes socials implícites són determinants."
+        }
+      },
+      "capacitatsLimitacions": {
+        "title": "2.8.3. La Intel·ligència Artificial com a Eina Hermenèutica: Capacitats i Limitacions",
+        "capacitats": {
+          "title": "2.8.3.1. Capacitats Actuals de la IA en el Món Jurídic",
+          "content": "Tots els avenços actuals s'emmarquen dins de la categoria d'IA feble: sistemes dissenyats per executar tasques concretes sense consciència ni estats mentals. La IA pot simular tasques jurídiques però no pot dur a terme la interpretació del dret."
+        },
+        "limitacions": {
+          "title": "2.8.3.2. Les Limitacions Inherents i la Necessitat de Supervisió",
+          "content": "Els riscos associats a l'ús d'aquests sistemes fan que la supervisió humana sigui indispensable. La IA pot generar informació incorrecta (al·lucinacions), interpretar incorrectament els fets, o no seguir requisits ètics fonamentals. Per tant, la seva aplicació ha d'incloure un component 'human-in-the-loop'."
+        }
+      },
+      "ciutadaniaAugmentada": {
+        "title": "2.8.4. Cap a una Ciutadania Jurídicament Augmentada",
+        "balanc": {
+          "title": "2.8.4.1. Balanç de Potencialitats i Perills",
+          "content": "La IA pot actuar com un potent 'multiplicador de força' legal, capacitant els ciutadans per entendre millor els seus drets. Tanmateix, aquesta potència comporta el risc de generar una falsa sensació de certesa. L'objectiu no ha de ser substituir el raonament humà, sinó augmentar-lo."
+        },
+        "recomanacions": {
+          "title": "2.8.4.2. Recomanacions per a un Desplegament Responsable",
+          "content": "És imprescindible un esforç coordinat entre desenvolupadors, legisladors i institucions educatives: disseny centrat en l'usuari, implementació efectiva del marc regulador, i foment de l'alfabetització jurídica i digital."
+        },
+        "visio": {
+          "title": "2.8.4.3. Visió Final: La Tecnologia com a Eina d'Augmentació",
+          "content": "L'ideal clàssic d'un 'govern de les lleis i no dels homes' es basa en la premissa que la llei ha de prevaldre sobre l'arbitrarietat. Un ús responsable de la IA, guiat per un marc ètic que reconegui els seus límits fonamentals, pot contribuir a fer realitat aquesta aspiració mil·lenària."
+        }
+      }
+    }
+  },
+  "marcRegulatori": {
+    "title": "3. Marc Regulatori i Compliment per a Sistemes d'IA Jurídica",
+    "description": "Anàlisi del marc regulatori aplicable a Prudencia.ad i mesures de compliment implementades",
+    "compliment": {
+      "title": "3.1. Compliment del Reglament Europeu d'IA",
+      "classificacio": {
+        "title": "3.1.1. Classificació de Prudencia.ad segons el Reglament",
+        "content": "Prudencia.ad es classifica com a sistema d'IA de risc limitat, ja que proporciona interpretacions informatives sense prendre decisions automàtiques que afectin drets legals directament."
+      },
+      "obligacions": {
+        "title": "3.1.2. Obligacions aplicables i mesures de compliment",
+        "content": "Les obligacions inclouen transparència (informació clara sobre l'ús de IA), supervisió humana (disclaimers sobre la naturalesa informativa), i qualitat de dades (ús de fonts oficials verificables)."
+      },
+      "supervisio": {
+        "title": "3.1.3. Supervisió humana i explicabilitat",
+        "content": "Totes les interpretacions generades per IA inclouen comparació costat per costat amb el text original, referències a fonts oficials, i advertències clares sobre la naturalesa informativa (no assessorament legal)."
+      }
+    },
+    "gdprCompliment": {
+      "title": "3.2. Compliment del GDPR",
+      "baseLegal": {
+        "title": "3.2.1. Base legal per al tractament de dades",
+        "content": "El tractament de dades es basa en l'interès legítim de proporcionar accés al coneixement jurídic públic, amb minimització de dades personals i respecte als drets dels usuaris."
+      },
+      "seguretat": {
+        "title": "3.2.2. Mesures de seguretat i privacitat implementades",
+        "content": "Implementació de mesures tècniques i organitzatives adequades: encriptació de dades, accés restringit, i política de privacitat clara sobre el tractament de dades."
+      },
+      "dretsUsuaris": {
+        "title": "3.2.3. Drets dels usuaris i exercici efectiu",
+        "content": "Els usuaris poden exercir els seus drets d'accés, rectificació, supressió i portabilitat de dades mitjançant un procés clar i accessible."
+      }
+    },
+    "propietatIntel·lectual": {
+      "title": "3.3. Propietat Intel·lectual en l'Era de la IA",
+      "dretsAutor": {
+        "title": "3.3.1. Drets d'autor sobre interpretacions generades",
+        "content": "Les interpretacions generades per IA plantegen qüestions sobre la propietat intel·lectual: qui té drets sobre el contingut generat per IA basat en textos legals públics?"
+      },
+      "dadesPubliques": {
+        "title": "3.3.2. Ús de dades públiques i drets d'explotació",
+        "content": "Els textos legals oficials són de domini públic, però les interpretacions i anàlisis generades poden estar subjectes a drets d'autor segons la jurisdicció aplicable."
+      },
+      "licencies": {
+        "title": "3.3.3. Llicències i model de propietat intel·lectual del projecte",
+        "content": "Prudencia.ad utilitza una llicència oberta que permet l'ús i modificació del codi, mentre que les interpretacions generades es proporcionen sota una llicència que permet l'ús no comercial amb atribució."
+      }
+    }
+  },
+  "arquitectura": {
+    "title": "4. Arquitectura Tècnica",
+    "stack": {
+      "title": "4.1. Stack Tecnològic",
+      "content": "Next.js, React, Tailwind, Vercel. Justificació de la tria d'aquesta combinació."
+    },
+    "dades": {
+      "title": "4.2. Model de Dades",
+      "content": "Estructura JSON vs Base de Dades Relacional. Esquema JSON de l'article."
+    },
+    "ia": {
+      "title": "4.3. Integració de la IA",
+      "content": "Arquitectura de prompts (Prompt Engineering), gestió de costos i tokens (API Claude)."
+    },
+    "multilingue": {
+      "title": "4.4. Estratègia Multilingüe (i18n)",
+      "content": "Reptes tècnics de gestionar contingut legal en CA/ES/FR."
+    }
+  },
+  "implementacio": {
+    "title": "5. Implementació i Desenvolupament (MVP)",
+    "ingestio": {
+      "title": "5.1. Procés d'Ingestió de Dades",
+      "content": "Com es transformen els PDF del BOPA a JSON estructurat."
+    },
+    "frontend": {
+      "title": "5.2. Desenvolupament del Frontend",
+      "content": "Components clau: ArticleViewer, ChatbotPrudencia."
+    },
+    "gestioRiscos": {
+      "title": "5.3. Gestió de Riscos en Sistemes d'IA Jurídica",
+      "identificacio": {
+        "title": "5.3.1. Identificació de riscos",
+        "al·lucinacio": {
+          "title": "5.3.1.1. Al·lucinació i generació de contingut fictici",
+          "content": "El risc que la IA generi informació legal que no existeix en les fonts oficials, especialment perillós en contextos jurídics on la precisió és essencial."
+        },
+        "biaixos": {
+          "title": "5.3.1.2. Biaixos algorítmics i discriminació",
+          "content": "Els sistemes d'IA poden perpetuar biaixos existents en les dades d'entrenament o introduir noves formes de discriminació en la interpretació jurídica."
+        },
+        "errors": {
+          "title": "5.3.1.3. Errors d'interpretació i conseqüències legals",
+          "content": "Errors en la interpretació de normes legals poden portar a conseqüències greus per als usuaris que confien en les interpretacions generades."
+        },
+        "seguretat": {
+          "title": "5.3.1.4. Vulnerabilitats de seguretat i ciberseguretat",
+          "content": "Els sistemes d'IA jurídica són vulnerables a atacs de seguretat, manipulació de dades, o compromís de la integritat de les interpretacions generades."
+        }
+      },
+      "mitigacio": {
+        "title": "5.3.2. Estratègies de mitigació implementades",
+        "rag": {
+          "title": "5.3.2.1. RAG (Retrieval Augmented Generation)",
+          "content": "Implementació de RAG per assegurar que les respostes es basin sempre en documents oficials recuperats, no en coneixement pre-entrenat del model."
+        },
+        "referencies": {
+          "title": "5.3.2.2. Referències creuades i verificació de fonts",
+          "content": "Totes les interpretacions inclouen referències directes als articles originals, permetent als usuaris verificar la informació i consultar el text oficial."
+        },
+        "supervisio": {
+          "title": "5.3.2.3. Supervisió humana obligatòria",
+          "content": "Revisió humana de les interpretacions generades per a articles crítics, amb un procés de validació per part de professionals del dret."
+        },
+        "disclaimers": {
+          "title": "5.3.2.4. Disclaimers i limitació de responsabilitat",
+          "content": "Advertències clares sobre la naturalesa informativa (no assessorament legal) del contingut generat i la necessitat de consultar professionals per a casos complexos."
+        }
+      },
+      "control": {
+        "title": "5.3.3. Mesures de control i auditoria",
+        "traçabilitat": {
+          "title": "5.3.3.1. Traçabilitat de les interpretacions generades",
+          "content": "Registre de totes les interpretacions generades amb identificació de la versió del model utilitzat, data de generació, i fonts consultades."
+        },
+        "registre": {
+          "title": "5.3.3.2. Registre de decisions i versions",
+          "content": "Sistema de versionat que permet rastrejar canvis en les interpretacions i identificar quines versions del model van generar quines respostes."
+        },
+        "avaluacio": {
+          "title": "5.3.3.3. Avaluació contínua de la qualitat",
+          "content": "Procés continu d'avaluació de la qualitat de les interpretacions generades, amb mètriques de precisió, claredat i utilitat per als usuaris."
+        }
+      }
+    }
+  },
+  "sostenibilitat": {
+    "title": "6. Model de Sostenibilitat i Negoci",
+    "costos": {
+      "title": "6.1. Pla de costos",
+      "content": "Hosting, APIs."
+    },
+    "monetitzacio": {
+      "title": "6.2. Estratègia de monetització",
+      "content": "Freemium vs Professional."
+    },
+    "escalabilitat": {
+      "title": "6.3. Escalabilitat",
+      "content": "Full de ruta de la Fase 1 a la 3."
+    }
+  },
+  "resultats": {
+    "title": "7. Resultats i Validació",
+    "rendiment": {
+      "title": "7.1. Mètriques de Rendiment",
+      "content": "Resultats de Lighthouse/Vercel Analytics."
+    },
+    "qualitat": {
+      "title": "7.2. Qualitat de la IA",
+      "content": "Avaluació qualitativa (per part d'advocats) dels resums generats."
+    },
+    "comparativa": {
+      "title": "7.3. Comparativa",
+      "content": "prudencia.ad vs Cerca tradicional al BOPA."
+    }
+  },
+  "conclusions": {
+    "title": "8. Conclusions i Treball Futur",
+    "resum": "Resum de l'assoliment dels objectius.",
+    "limitacions": "Limitacions actuals (només Codi Civil inicialment).",
+    "futur": "Futures línies: Jurisprudència vinculada, API pública.",
+    "implicacions": {
+      "title": "8.4. Implicacions per al Futur del Dret de la IA",
+      "preparacio": {
+        "title": "8.4.1. Preparació legal per a tecnologies emergents",
+        "content": "La ràpida evolució de la IA requereix marcs legals adaptatius que puguin respondre als desafiaments emergents sense obstaculitzar la innovació."
+      },
+      "cooperacio": {
+        "title": "8.4.2. Necessitat de cooperació internacional",
+        "content": "La regulació de la IA jurídica requereix cooperació internacional per evitar fragmentació i garantir estàndards comuns de protecció dels drets fonamentals."
+      },
+      "tendencies": {
+        "title": "8.4.3. Tendències emergents i desafiaments futurs",
+        "content": "Les tendències futures inclouen IA multimodal, personalització avançada, i integració amb sistemes oficials, plantejant nous desafiaments legals i ètics."
+      },
+      "lliçons": {
+        "title": "8.4.4. Lliçons per a altres jurisdiccions micro-estatals",
+        "content": "El model desenvolupat per a Andorra pot servir com a referència per a altres micro-estats que busquen millorar l'accessibilitat jurídica mitjançant IA."
+      }
+    }
+  },
+  "bibliografia": {
+    "title": "Bibliografia",
+    "subtitle": "Gestió i consulta de referències bibliogràfiques del paper",
+    "cerca": "Cercar per títol, autor, tema...",
+    "filtres": {
+      "tipus": "Tipus",
+      "any": "Any",
+      "tema": "Tema",
+      "totsTipus": "Tots els tipus",
+      "totsAnys": "Tots els anys",
+      "totsTemes": "Tots els temes",
+      "netejar": "Netejar filtres"
+    },
+    "mostrant": "Mostrant {count} de {total} referències",
+    "noResultats": "No s'han trobat referències amb els filtres seleccionats.",
+    "tornarLlista": "Tornar a la llista",
+    "detall": {
+      "autors": "Autors",
+      "any": "Any",
+      "editorial": "Editorial",
+      "revista": "Revista",
+      "citacioCompleta": "Citació completa",
+      "copiar": "Copiar",
+      "copiat": "Copiat!",
+      "notes": "Notes",
+      "resum": "Resum",
+      "enllaçExtern": "Enllaç extern",
+      "descarregarPDF": "Descarregar PDF",
+      "document": "Document"
+    },
+    "tipus": {
+      "llibre": "Llibre",
+      "article": "Article",
+      "web": "Recurs web",
+      "paper": "Paper",
+      "informe": "Informe",
+      "llei": "Llei",
+      "altres": "Altres"
+    }
+  }
+}
+
