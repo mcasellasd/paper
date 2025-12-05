@@ -1,10 +1,9 @@
 'use client';
 
-import React from 'react';
 import Link from 'next/link';
 import { ArrowLeft, Send, Bot, User, BookOpen, Loader2, MessageSquare } from 'lucide-react';
 import { bibliografia, obtenirReferencia, type ReferenciaBibliografica } from '@/lib/bibliografia/index';
-import { useState, useRef, useEffect, useMemo, useCallback } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
 
 interface Missatge {
@@ -30,18 +29,13 @@ export default function XatPage() {
   const missatgesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  // Memoitzar valors constants que no canvien
-  const totalReferencies = useMemo(() => bibliografia.length, []);
-  const totsAutors = useMemo(() => Array.from(new Set(bibliografia.flatMap(ref => ref.autors))), []);
-  const totsTemes = useMemo(() => Array.from(new Set(bibliografia.flatMap(ref => ref.temes))), []);
-
   // Desplaçar-se al final quan hi ha nous missatges
   useEffect(() => {
     missatgesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [missatges]);
 
-  // Funció per buscar referències rellevants basant-se en la pregunta (memoitzada)
-  const buscarReferenciesRellevants = useCallback((pregunta: string): ReferenciaBibliografica[] => {
+  // Funció per buscar referències rellevants basant-se en la pregunta
+  const buscarReferenciesRellevants = (pregunta: string): ReferenciaBibliografica[] => {
     const preguntaLower = pregunta.toLowerCase();
     const paraulesClau = preguntaLower.split(/\s+/).filter(p => p.length > 3);
     
@@ -74,21 +68,23 @@ export default function XatPage() {
       .sort((a, b) => b.puntuacio - a.puntuacio)
       .slice(0, 5)
       .map(item => item.ref);
-  }, []);
+  };
 
-  // Generar resposta basada en la pregunta i les referències trobades (memoitzada)
-  const generarResposta = useCallback((pregunta: string, referencies: ReferenciaBibliografica[]): string => {
+  // Generar resposta basada en la pregunta i les referències trobades
+  const generarResposta = (pregunta: string, referencies: ReferenciaBibliografica[]): string => {
     const preguntaLower = pregunta.toLowerCase();
     
     // Respostes per a preguntes específiques sobre quantitat
     if (preguntaLower.includes('quant') || preguntaLower.includes('quantes') || preguntaLower.includes('quants')) {
       if (preguntaLower.includes('referència') || preguntaLower.includes('document') || preguntaLower.includes('bibliografia')) {
-        return `La bibliografia conté ${totalReferencies} referències bibliogràfiques en total.`;
+        return `La bibliografia conté ${bibliografia.length} referències bibliogràfiques en total.`;
       }
       if (preguntaLower.includes('autor')) {
+        const totsAutors = Array.from(new Set(bibliografia.flatMap(ref => ref.autors)));
         return `Hi ha ${totsAutors.length} autors diferents a la bibliografia.`;
       }
       if (preguntaLower.includes('tema') || preguntaLower.includes('temat')) {
+        const totsTemes = Array.from(new Set(bibliografia.flatMap(ref => ref.temes)));
         return `La bibliografia cobreix ${totsTemes.length} temes diferents.`;
       }
     }
@@ -101,6 +97,7 @@ export default function XatPage() {
         return `He trobat ${referencies.length} referència(s) rellevant(s). Alguns autors relacionats són: ${autorsUnics.slice(0, 5).join(', ')}.`;
       }
       // Si no hi ha referències específiques, llistar alguns autors destacats
+      const totsAutors = Array.from(new Set(bibliografia.flatMap(ref => ref.autors)));
       return `Alguns autors destacats de la bibliografia són: ${totsAutors.slice(0, 10).join(', ')}. Pots preguntar sobre un autor específic per veure les seves obres.`;
     }
     
@@ -150,9 +147,9 @@ export default function XatPage() {
     
     // Resposta quan no es troben referències
     return `No he trobat referències específiques relacionades amb la teva pregunta. Pots intentar:\n\n- Reformular la pregunta amb altres paraules\n- Fer una pregunta més general sobre la bibliografia\n- Cercar directament a la pàgina de bibliografia utilitzant els filtres disponibles\n- Preguntar sobre un autor, tema o any específic`;
-  }, [totalReferencies, totsAutors, totsTemes]);
+  };
 
-  const enviarMissatge = useCallback(async () => {
+  const enviarMissatge = async () => {
     if (!inputMissatge.trim() || carregant) return;
 
     const pregunta = inputMissatge.trim();
@@ -188,14 +185,14 @@ export default function XatPage() {
     
     setMissatges(prev => [...prev, missatgeAssistent]);
     setCarregant(false);
-  }, [inputMissatge, carregant, buscarReferenciesRellevants, generarResposta]);
+  };
 
-  const handleKeyPress = useCallback((e: React.KeyboardEvent<HTMLInputElement>) => {
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
       enviarMissatge();
     }
-  }, [enviarMissatge]);
+  };
 
   return (
     <div className="bg-white min-h-screen">
@@ -332,7 +329,7 @@ export default function XatPage() {
           <div className="flex flex-wrap gap-2">
             {[
               'Quantes referències hi ha sobre llenguatge jurídic?',
-              'Recomana'm articles sobre IA i dret',
+              'Recomana\'m articles sobre IA i dret',
               'Quins autors han escrit sobre accessibilitat jurídica?',
               'Què diu sobre el llenguatge clar?'
             ].map((pregunta, index) => (
