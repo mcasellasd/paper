@@ -131,24 +131,31 @@ export async function GET(request: NextRequest) {
     // Primer intentar llegir el fitxer markdown del directori content/
     const markdownPath = join(process.cwd(), 'content', `${paginaId}.md`);
     
-    if (existsSync(markdownPath)) {
-      // Si existeix el fitxer markdown, llegir-lo
-      const contingut = await readFile(markdownPath, 'utf-8');
-      console.log(`Llegint fitxer markdown per ${paginaId}: ${contingut.length} caràcters`);
-      
-      if (!contingut || contingut.trim().length === 0) {
-        console.warn(`El fitxer markdown per ${paginaId} està buit`);
+    try {
+      if (existsSync(markdownPath)) {
+        // Si existeix el fitxer markdown, llegir-lo
+        const contingut = await readFile(markdownPath, 'utf-8');
+        console.log(`Llegint fitxer markdown per ${paginaId}: ${contingut.length} caràcters`);
+        
+        if (!contingut || contingut.trim().length === 0) {
+          console.warn(`El fitxer markdown per ${paginaId} està buit`);
+        }
+        
+        return NextResponse.json({
+          pagina: paginaId,
+          contingut,
+          ruta: pagina.ruta,
+          fitxer: pagina.fitxer,
+          tipus: 'markdown'
+        });
       }
-      
-      return NextResponse.json({
-        pagina: paginaId,
-        contingut,
-        ruta: pagina.ruta,
-        fitxer: pagina.fitxer,
-        tipus: 'markdown'
-      });
-    } else {
-      // Si no existeix, intentar extreure el text del JSX
+    } catch (readError) {
+      // Si no es pot llegir, continuar intentant extreure del JSX
+      console.warn('No s\'ha pogut llegir el fitxer markdown, intentant extreure del JSX:', readError);
+    }
+    
+    // Si no existeix o no es pot llegir, intentar extreure el text del JSX
+    try {
       const jsxPath = join(process.cwd(), pagina.ruta, pagina.fitxer);
       
       if (!existsSync(jsxPath)) {
@@ -162,13 +169,20 @@ export async function GET(request: NextRequest) {
       const contingutExtret = extreureTextDelJSX(jsxContent);
       
       // Assegurar que el directori content/ existeix
-      const contentDir = join(process.cwd(), 'content');
-      if (!existsSync(contentDir)) {
-        await mkdir(contentDir, { recursive: true });
+      try {
+        const contentDir = join(process.cwd(), 'content');
+        if (!existsSync(contentDir)) {
+          await mkdir(contentDir, { recursive: true });
+        }
+        
+        // Crear el fitxer markdown amb el contingut extret
+        // Nota: A Vercel/serverless, els fitxers no persisteixen entre invocacions
+        // Això només funcionarà durant l'execució actual
+        await writeFile(markdownPath, contingutExtret, 'utf-8');
+      } catch (writeError) {
+        // Si no es pot escriure (com a Vercel), continuar sense crear el fitxer
+        console.warn('No s\'ha pogut crear el fitxer markdown (potser estem en un entorn serverless):', writeError);
       }
-      
-      // Crear el fitxer markdown amb el contingut extret
-      await writeFile(markdownPath, contingutExtret, 'utf-8');
       
       return NextResponse.json({
         pagina: paginaId,
@@ -178,11 +192,18 @@ export async function GET(request: NextRequest) {
         tipus: 'markdown',
         creat: true
       });
+    } catch (jsxError) {
+      console.error('Error llegint fitxer JSX:', jsxError);
+      throw jsxError; // Re-lanzar per ser capturat pel catch general
     }
   } catch (error) {
     console.error('Error llegint contingut:', error);
+    const errorMessage = error instanceof Error ? error.message : 'Error desconegut';
     return NextResponse.json(
-      { error: 'Error llegint el contingut' },
+      { 
+        error: 'Error llegint el contingut',
+        details: process.env.NODE_ENV === 'development' ? errorMessage : undefined
+      },
       { status: 500 }
     );
   }
@@ -213,13 +234,27 @@ export async function POST(request: NextRequest) {
     const markdownPath = join(process.cwd(), 'content', `${pagina}.md`);
     
     // Assegurar que el directori existeix
-    const contentDir = join(process.cwd(), 'content');
-    if (!existsSync(contentDir)) {
-      await mkdir(contentDir, { recursive: true });
+    try {
+      const contentDir = join(process.cwd(), 'content');
+      if (!existsSync(contentDir)) {
+        await mkdir(contentDir, { recursive: true });
+      }
+      
+      // Guardar el contingut markdown
+      // Nota: A Vercel/serverless, els fitxers no persisteixen entre invocacions
+      // Per producció, hauríem d'usar una base de dades o servei d'emmagatzematge
+      await writeFile(markdownPath, contingut, 'utf-8');
+    } catch (writeError) {
+      // Si no es pot escriure (com a Vercel), retornar error
+      console.error('Error escrivint fitxer:', writeError);
+      return NextResponse.json(
+        { 
+          error: 'No es pot guardar el contingut. En entorns serverless (com Vercel), els fitxers no persisteixen. Considera usar una base de dades.',
+          details: process.env.NODE_ENV === 'development' ? (writeError instanceof Error ? writeError.message : 'Error desconegut') : undefined
+        },
+        { status: 500 }
+      );
     }
-    
-    // Guardar el contingut markdown
-    await writeFile(markdownPath, contingut, 'utf-8');
     
     return NextResponse.json({
       success: true,
@@ -229,8 +264,12 @@ export async function POST(request: NextRequest) {
     });
   } catch (error) {
     console.error('Error guardant contingut:', error);
+    const errorMessage = error instanceof Error ? error.message : 'Error desconegut';
     return NextResponse.json(
-      { error: 'Error guardant el contingut' },
+      { 
+        error: 'Error guardant el contingut',
+        details: process.env.NODE_ENV === 'development' ? errorMessage : undefined
+      },
       { status: 500 }
     );
   }
