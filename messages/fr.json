@@ -10,7 +10,8 @@
     "conclusions": "Conclusions",
     "editor": "Éditeur",
     "biblioteca": "Bibliothèque",
-    "bibliografia": "Bibliographie"
+    "bibliografia": "Bibliographie",
+    "xat": "Chat"
   },
   "hero": {
     "title": "Nouvelles technologies appliquées à l'accessibilité juridique: Intelligence artificielle et interprétation citoyenne du droit. Le projet Prudencia.ad",
@@ -134,9 +135,13 @@
       "tipus": "Type",
       "any": "Année",
       "tema": "Thème",
+      "autor": "Auteur",
+      "idioma": "Langue",
       "totsTipus": "Tous les types",
       "totsAnys": "Toutes les années",
       "totsTemes": "Tous les thèmes",
+      "totsAutors": "Tous les auteurs",
+      "totsIdiomes": "Toutes les langues",
       "netejar": "Effacer les filtres"
     },
     "mostrant": "Affichage de {count} sur {total} références",

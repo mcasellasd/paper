@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { ArrowLeft, BookOpen, Calendar, Tag, FileText, Search, Filter, ExternalLink, Copy, Check, Download } from 'lucide-react';
 import { bibliografia, obtenirReferencia, type ReferenciaBibliografica } from '@/lib/bibliografia/index';
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
 
 
@@ -14,8 +14,21 @@ export default function BibliografiaPage() {
   const [filtreTipus, setFiltreTipus] = useState<ReferenciaBibliografica['tipus'] | 'tots'>('tots');
   const [filtreAny, setFiltreAny] = useState<string>('tots');
   const [filtreTema, setFiltreTema] = useState<string>('tots');
+  const [filtreAutor, setFiltreAutor] = useState<string>('tots');
+  const [filtreIdioma, setFiltreIdioma] = useState<string>('tots');
   const [referenciaSeleccionada, setReferenciaSeleccionada] = useState<string | null>(null);
   const [copiat, setCopiat] = useState<string | null>(null);
+
+  // Carregar referència seleccionada des del xat
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const refId = sessionStorage.getItem('referenciaSeleccionada');
+      if (refId) {
+        setReferenciaSeleccionada(refId);
+        sessionStorage.removeItem('referenciaSeleccionada');
+      }
+    }
+  }, []);
 
   // Extraure tots els anys únics
   const totsElsAnys = useMemo(() => {
@@ -26,6 +39,102 @@ export default function BibliografiaPage() {
   const totsElsTemes = useMemo(() => {
     return Array.from(new Set(bibliografia.flatMap(ref => ref.temes))).sort();
   }, []);
+
+  // Extraure tots els autors únics
+  const totsElsAutors = useMemo(() => {
+    const autorsSet = new Set<string>();
+    bibliografia.forEach(ref => {
+      ref.autors.forEach(autor => {
+        // Agafar només el primer nom (abans de la coma) per simplificar
+        const nomPrincipal = autor.split(',')[0].trim();
+        if (nomPrincipal) {
+          autorsSet.add(nomPrincipal);
+        }
+      });
+    });
+    return Array.from(autorsSet).sort();
+  }, []);
+
+  // Funció per detectar idioma d'una referència (només pel títol)
+  const detectarIdioma = (ref: ReferenciaBibliografica): string => {
+    const titolLower = ref.titol.toLowerCase();
+    
+    // Detectar català pel títol
+    // Buscar paraules clau específiques del català
+    const paraulesCatalanes = [
+      'català', 'catalana', 'catalanes', 'catalans',
+      'llengua', 'llengües', 'llenguatge',
+      'jurídic', 'jurídica', 'jurídics', 'jurídiques',
+      'andorra', 'andorran', 'andorrana', 'andorrans', 'andorranes',
+      'principat', 'principats',
+      'observatori', 'observatoris',
+      'justícia', 'justícies',
+      'política', 'polítiques',
+      'accessibilitat', 'accessibilitats',
+      'claredat', 'claredats',
+      'comunicació', 'comunicacions',
+      'interpretació', 'interpretacions',
+      'aplicació', 'aplicacions',
+      'estat', 'estats',
+      'perspectives', 'perspectiva'
+    ];
+    
+    if (paraulesCatalanes.some(paraula => titolLower.includes(paraula))) {
+      return 'ca';
+    }
+    
+    // Detectar castellà pel títol
+    const paraulesCastellanes = [
+      'español', 'castellano', 'castellana',
+      'derecho', 'derechos',
+      'justicia', 'justicias',
+      'inteligencia artificial',
+      'artificial', 'artificiales',
+      'responsabilidad', 'responsabilidades',
+      'civil', 'civiles',
+      'geopolítica', 'geopolíticas',
+      'implementación', 'implementaciones'
+    ];
+    
+    if (paraulesCastellanes.some(paraula => titolLower.includes(paraula))) {
+      return 'es';
+    }
+    
+    // Detectar francès pel títol
+    const paraulesFranceses = [
+      'français', 'française', 'françaises',
+      'france', 'français',
+      'droit', 'droits',
+      'justice', 'justices',
+      'intelligence artificielle',
+      'artificielle', 'artificielles'
+    ];
+    
+    if (paraulesFranceses.some(paraula => titolLower.includes(paraula))) {
+      return 'fr';
+    }
+    
+    // Detectar anglès pel títol
+    const paraulesAngleses = [
+      'legal language', 'legal tech', 'legaltech',
+      'artificial intelligence', 'ai',
+      'law', 'laws',
+      'legal', 'legals',
+      'language', 'languages',
+      'concept', 'concepts',
+      'possibility', 'possibilities',
+      'uniform', 'uniforms',
+      'blockchain', 'blockchains',
+      'semiotics', 'discourse'
+    ];
+    
+    if (paraulesAngleses.some(paraula => titolLower.includes(paraula))) {
+      return 'en';
+    }
+    
+    // Per defecte, assumir multilingüe o desconegut
+    return 'multilingüe';
+  };
 
   // Labels de tipus traduïts
   const tipusLabels: Record<ReferenciaBibliografica['tipus'], string> = {
@@ -67,9 +176,24 @@ export default function BibliografiaPage() {
         return false;
       }
 
+      // Filtrar per autor
+      if (filtreAutor !== 'tots') {
+        const coincideixAutor = ref.autors.some(autor => {
+          const nomPrincipal = autor.split(',')[0].trim();
+          return nomPrincipal === filtreAutor;
+        });
+        if (!coincideixAutor) return false;
+      }
+
+      // Filtrar per idioma
+      if (filtreIdioma !== 'tots') {
+        const idiomaDetectat = detectarIdioma(ref);
+        if (idiomaDetectat !== filtreIdioma) return false;
+      }
+
       return true;
     });
-  }, [cerca, filtreTipus, filtreAny, filtreTema]);
+  }, [cerca, filtreTipus, filtreAny, filtreTema, filtreAutor, filtreIdioma]);
 
   const referenciaDetall = referenciaSeleccionada 
     ? obtenirReferencia(referenciaSeleccionada)
@@ -320,13 +444,41 @@ export default function BibliografiaPage() {
                   ))}
                 </select>
 
-                {(cerca || filtreTipus !== 'tots' || filtreAny !== 'tots' || filtreTema !== 'tots') && (
+                <select
+                  value={filtreAutor}
+                  onChange={(e) => setFiltreAutor(e.target.value)}
+                  className="px-3 py-2 border border-gray-300 rounded-md text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  title="Filtrar per autor"
+                >
+                  <option value="tots">{t('filtres.totsAutors')}</option>
+                  {totsElsAutors.map(autor => (
+                    <option key={autor} value={autor}>{autor}</option>
+                  ))}
+                </select>
+
+                <select
+                  value={filtreIdioma}
+                  onChange={(e) => setFiltreIdioma(e.target.value)}
+                  className="px-3 py-2 border border-gray-300 rounded-md text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  title="Filtrar per idioma"
+                >
+                  <option value="tots">{t('filtres.totsIdiomes')}</option>
+                  <option value="ca">Català</option>
+                  <option value="es">Castellà</option>
+                  <option value="fr">Francès</option>
+                  <option value="en">Anglès</option>
+                  <option value="multilingüe">Multilingüe</option>
+                </select>
+
+                {(cerca || filtreTipus !== 'tots' || filtreAny !== 'tots' || filtreTema !== 'tots' || filtreAutor !== 'tots' || filtreIdioma !== 'tots') && (
                   <button
                     onClick={() => {
                       setCerca('');
                       setFiltreTipus('tots');
                       setFiltreAny('tots');
                       setFiltreTema('tots');
+                      setFiltreAutor('tots');
+                      setFiltreIdioma('tots');
                     }}
                     className="px-3 py-2 text-sm text-gray-600 hover:text-gray-900"
                   >

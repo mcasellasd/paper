@@ -23,6 +23,7 @@ const navigation = [
   { key: 'conclusions', href: '/conclusions' },
   { key: 'editor', href: '/editor' },
   { key: 'bibliografia', href: '/bibliografia' },
+  { key: 'xat', href: '/xat' },
 ];
 
 export default function Header({ locale }: HeaderProps) {

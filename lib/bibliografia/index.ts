@@ -685,6 +685,72 @@ export const bibliografia: ReferenciaBibliografica[] = [
     notes: 'Sistema d\'avaluació de risc de violència domèstica que ha generat preocupacions sobre la seva opacitat ("caixa negra").'
   },
   {
+    id: 'manual-llenguatge-juridic',
+    tipus: 'manual',
+    autors: ["Font oficial"],
+    any: '2024',
+    titol: "Manual de Llenguatge Jurídic",
+    citacio: "Font oficial (2024). Manual de Llenguatge Jurídic.",
+    resum: "Manual sobre llenguatge jurídic que proporciona guies i directrius per a l'ús correcte del llenguatge legal. Aquest manual és essencial per entendre les convencions, la terminologia i les pràctiques del llenguatge jurídic, contribuint a la millora de l'accessibilitat i la comprensió del dret.",
+    temes: ["Llenguatge jurídic","Manual","Terminologia jurídica","Llenguatge clar","Accessibilitat jurídica"],
+    fitxer: "Manual_llenguatge_juridic.pdf"
+  },
+  {
+    id: 'catala-juridic',
+    tipus: 'manual',
+    autors: ["Font oficial"],
+    any: '2024',
+    titol: "Català Jurídic",
+    citacio: "Font oficial (2024). Català Jurídic.",
+    resum: "Document sobre l'ús del català en contextos jurídics. Proporciona orientacions sobre terminologia jurídica en català, rellevant especialment per al context andorrà on el català és l'única llengua oficial. Aquest document contribueix a la comprensió de com el llenguatge jurídic s'adapta a contextos lingüístics específics.",
+    temes: ["Llenguatge jurídic","Català","Terminologia jurídica","Llenguatge clar","Accessibilitat jurídica","Andorra"],
+    fitxer: "Català_Jurídic.pdf"
+  },
+  {
+    id: 'observatori-llengua-2005-q3',
+    tipus: 'informe',
+    autors: ["Observatori de la Llengua"],
+    any: '2005',
+    titol: "Llengua: Tercer Quarimestre Observatori 2005",
+    citacio: "Observatori de la Llengua (2005). Llengua: Tercer Quarimestre Observatori 2005.",
+    resum: "Informe de l'Observatori de la Llengua corresponent al tercer quarimestre de 2005. Aquest document proporciona dades i anàlisis sobre l'estat de la llengua catalana, rellevant per entendre l'evolució de la política lingüística i l'ús del català en contextos oficials i administratius.",
+    temes: ["Llengua catalana","Observatori","Política lingüística","Andorra","Estat de la llengua"],
+    fitxer: "Llengua Tercer Quarimestre Observatori 2005.pdf"
+  },
+  {
+    id: 'observatori-justicia-2025-s1',
+    tipus: 'informe',
+    autors: ["Observatori de Justícia"],
+    any: '2025',
+    titol: "Justícia: Observatori Primer Semestre del 2025",
+    citacio: "Observatori de Justícia (2025). Justícia: Observatori Primer Semestre del 2025.",
+    resum: "Informe de l'Observatori de Justícia corresponent al primer semestre de 2025. Aquest document proporciona estadístiques, anàlisis i dades sobre l'administració de justícia, incloent-hi informació sobre processos, eficiència i accessibilitat del sistema judicial. Rellevant per entendre el context actual del sistema judicial andorrà.",
+    temes: ["Justícia","Observatori","Administració de justícia","Andorra","Estadístiques judicials"],
+    fitxer: "Justícia Observatori Primer Semestre del 2025.pdf"
+  },
+  {
+    id: 'dialnet-estat-catala-micropaisos',
+    tipus: 'article',
+    autors: ["Autors diversos"],
+    any: '2024',
+    titol: "Estat actual i perspectives de la llengua catalana en els micropaïsos",
+    citacio: "Autors diversos (2024). Estat actual i perspectives de la llengua catalana en els micropaïsos.",
+    resum: "Article acadèmic de Dialnet que analitza l'estat actual i les perspectives futures de la llengua catalana en els micropaïsos, amb especial atenció a Andorra. Explora els desafiaments i oportunitats per a la promoció i preservació del català en contextos de micropaïsos, analitzant polítiques lingüístiques, ús institucional i perspectives de futur. Aquest treball és fonamental per entendre el context lingüístic d'Andorra i com afecta l'accessibilitat jurídica.",
+    temes: ["Llengua catalana","Micropaïsos","Andorra","Política lingüística","Perspectives","Dialnet"],
+    fitxer: "Dialnet-EstatActualIPerspectivesDeLaLlenguaCatalanaEnElsMi-10274194.pdf"
+  },
+  {
+    id: 'llengua-and',
+    tipus: 'informe',
+    autors: ["Font oficial"],
+    any: '2024',
+    titol: "Llengua AND",
+    citacio: "Font oficial (2024). Llengua AND.",
+    resum: "Document sobre la llengua a Andorra que proporciona informació sobre l'ús del català com a llengua oficial, les polítiques lingüístiques i l'aplicació de la llengua en contextos jurídics i administratius. Rellevant per al projecte Prudencia.ad en el context del suport multilingüe i la promoció del català com a llengua oficial.",
+    temes: ["Llengua catalana","Andorra","Política lingüística","Llengua oficial"],
+    fitxer: "llengua AND.pdf"
+  },
+  {
     id: 'proyecto-206-shanghai',
     tipus: 'altres',
     autors: ['Tribunal Suprem Popular de la Xina'],
