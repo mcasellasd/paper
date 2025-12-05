@@ -19,7 +19,8 @@ function extreureTextDelJSX(jsxContent: string): string {
   let text = '';
   
   // Extreure títols (h1, h2, h3, etc.) - millorat per capturar text amb elements dins
-  const titolsRegex = /<h([1-6])[^>]*>(.*?)<\/h[1-6]>/gs;
+  // Utilitzar [\s\S] en lloc de . amb flag s per compatibilitat amb ES2017
+  const titolsRegex = /<h([1-6])[^>]*>([\s\S]*?)<\/h[1-6]>/g;
   let match;
   while ((match = titolsRegex.exec(jsxContent)) !== null) {
     const nivell = match[1];
@@ -34,11 +35,11 @@ function extreureTextDelJSX(jsxContent: string): string {
   
   // Extreure paràgrafs - millorat per capturar text amb elements dins (strong, em, etc.)
   // Utilitzar regex més flexible per capturar paràgrafs que poden tenir múltiples línies
-  const paragrafsRegex = /<p[^>]*>(.*?)<\/p>/gs;
+  const paragrafsRegex = /<p[^>]*>([\s\S]*?)<\/p>/g;
   while ((match = paragrafsRegex.exec(jsxContent)) !== null) {
     let textParagraf = match[1]
-      .replace(/<strong[^>]*>(.*?)<\/strong>/gs, '**$1**') // Convertir strong a markdown
-      .replace(/<em[^>]*>(.*?)<\/em>/gs, '*$1*') // Convertir em a markdown
+      .replace(/<strong[^>]*>([\s\S]*?)<\/strong>/g, '**$1**') // Convertir strong a markdown
+      .replace(/<em[^>]*>([\s\S]*?)<\/em>/g, '*$1*') // Convertir em a markdown
       .replace(/<[^>]+>/g, '') // Eliminar altres tags
       .replace(/&nbsp;/g, ' ')
       .replace(/&amp;/g, '&')
@@ -84,11 +85,11 @@ function extreureTextDelJSX(jsxContent: string): string {
   }
   
   // Extreure llistes (ul/ol)
-  const llistesRegex = /<li[^>]*>(.*?)<\/li>/gs;
+  const llistesRegex = /<li[^>]*>([\s\S]*?)<\/li>/g;
   while ((match = llistesRegex.exec(jsxContent)) !== null) {
     let textItem = match[1]
-      .replace(/<strong[^>]*>(.*?)<\/strong>/g, '**$1**')
-      .replace(/<em[^>]*>(.*?)<\/em>/g, '*$1*')
+      .replace(/<strong[^>]*>([\s\S]*?)<\/strong>/g, '**$1**')
+      .replace(/<em[^>]*>([\s\S]*?)<\/em>/g, '*$1*')
       .replace(/<[^>]+>/g, '')
       .replace(/&nbsp;/g, ' ')
       .trim();
