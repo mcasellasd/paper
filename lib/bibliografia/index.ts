@@ -686,7 +686,7 @@ export const bibliografia: ReferenciaBibliografica[] = [
   },
   {
     id: 'manual-llenguatge-juridic',
-    tipus: 'manual',
+    tipus: 'llibre',
     autors: ["Font oficial"],
     any: '2024',
     titol: "Manual de Llenguatge Jurídic",
@@ -697,7 +697,7 @@ export const bibliografia: ReferenciaBibliografica[] = [
   },
   {
     id: 'catala-juridic',
-    tipus: 'manual',
+    tipus: 'llibre',
     autors: ["Font oficial"],
     any: '2024',
     titol: "Català Jurídic",
