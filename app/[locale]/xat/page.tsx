@@ -1,11 +1,11 @@
 'use client';
 
+import React from 'react';
 import Link from 'next/link';
 import { ArrowLeft, Send, Bot, User, BookOpen, Loader2, MessageSquare } from 'lucide-react';
 import { bibliografia, obtenirReferencia, type ReferenciaBibliografica } from '@/lib/bibliografia/index';
 import { useState, useRef, useEffect, useMemo, useCallback } from 'react';
 import { useTranslations } from 'next-intl';
-import type { KeyboardEvent } from 'react';
 
 interface Missatge {
   id: string;
@@ -190,7 +190,7 @@ export default function XatPage() {
     setCarregant(false);
   }, [inputMissatge, carregant, buscarReferenciesRellevants, generarResposta]);
 
-  const handleKeyPress = useCallback((e: KeyboardEvent<HTMLInputElement>) => {
+  const handleKeyPress = useCallback((e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
       enviarMissatge();
