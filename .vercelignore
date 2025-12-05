@@ -1,0 +1,26 @@
+# Git files (should never be deployed)
+.git
+.gitignore
+
+# Build artifacts and cache (should never be deployed)
+.next/cache
+.next/serverless
+
+# Development files
+.DS_Store
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Node modules (should already be excluded, but just in case)
+node_modules
+
+# Environment files
+.env
+.env.local
+.env*.local
+
+# Note: PDF files in lib/biblioteca are NOT excluded here because they're needed
+# at runtime by the API route. However, they're excluded from serverless function
+# bundles via next.config.mjs outputFileTracingExcludes
